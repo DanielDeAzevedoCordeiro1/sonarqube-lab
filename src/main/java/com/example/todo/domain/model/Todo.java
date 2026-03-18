@@ -45,4 +45,11 @@ public class Todo {
   public void setDone(boolean done) {
     this.done = done;
   }
+
+  public void markAsDone() {
+    if (this.done) {
+      throw new IllegalStateException("Tarefa já está concluída.");
+    }
+    this.done = true;
+  }
 }
