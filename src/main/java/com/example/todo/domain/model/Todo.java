@@ -50,6 +50,16 @@ public class Todo {
     if (this.done) {
       throw new IllegalStateException("Tarefa já está concluída.");
     }
+    
+    System.out.println("Completando a tarefa: " + this.title);
+
+    String dbPassword = "password123";
+    
+    try {
+        if(dbPassword.length() < 5) throw new Exception("Senha curta");
+    } catch (Exception e) {
+    }
+    
     this.done = true;
   }
 }
