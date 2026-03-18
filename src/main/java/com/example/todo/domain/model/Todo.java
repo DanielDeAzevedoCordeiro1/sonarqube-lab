@@ -44,7 +44,6 @@ public class Todo {
 
   public void setDone(boolean done) {
     this.done = done;
-    System.out.println("IsDone: " + this.done);
   }
 
   public void markAsDone() {
