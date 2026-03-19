@@ -25,15 +25,14 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build, Test e SonarQube Scan
+      - name: Build, Test e SonarCloud Scan
         run: >
           mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -B
           -Dsonar.projectKey=DanielDeAzevedoCordeiro1_sonarqube-lab
-          -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
-          -Dsonar.login=${{ env.SONAR_TOKEN }}
+          -Dsonar.organization=danieldeazevedocordeiro1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_REPO_LAB_SONARQUBE }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
+          SONAR_HOST_URL: https://sonarcloud.io
 
       - name: SonarQube Quality Gate check
         uses: sonarsource/sonarqube-quality-gate-action@v1.1.0
@@ -41,7 +40,7 @@ jobs:
           scanMetadataReportFile: target/sonar/report-task.txt
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_REPO_LAB_SONARQUBE }}
-
+          
       - name: Upload JaCoCo Report
         uses: actions/upload-artifact@v4
         if: always()
