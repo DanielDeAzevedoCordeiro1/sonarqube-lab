@@ -33,7 +33,7 @@ class TodoServiceTest {
 
     TodoService service = new TodoService(repo);
 
-    assertThatThrownBy(() -> service.getTodo(99L))
+    assertThatThrownBy(() -> service.get(99L))
         .isInstanceOf(java.util.NoSuchElementException.class);
   }
 }
