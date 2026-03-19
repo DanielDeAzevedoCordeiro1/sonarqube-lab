@@ -22,7 +22,7 @@ public class TodoService {
   }
 
   @Transactional(readOnly = true)
-  public Todo getTodo(Long id) {
+  public Todo get(Long id) {
     return repository.findById(id).orElseThrow(() -> new NoSuchElementException(NOT_FOUND_MESSAGE));
   }
 
@@ -33,7 +33,7 @@ public class TodoService {
 
   @Transactional
   public Todo update(Long id, String title, boolean done) {
-    Todo todo = repository.findById(id).orElseThrow(() -> new NoSuchElementException(NOT_FOUND_MESSAGE));
+    Todo todo = get(id);
     todo.setTitle(title);
     todo.setDone(done);
     return repository.save(todo);
